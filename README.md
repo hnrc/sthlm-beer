@@ -1,1 +1,1 @@
-# beer.sthlm
+# STHLM :beer:
