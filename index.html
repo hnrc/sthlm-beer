@@ -18,12 +18,15 @@
       h1 {
         text-align: center;
         color: #444;
-        background-color: transparent;
       }
-      header {
+      .venue h1 {
+        cursor: pointer;
+      }
+      .header {
         text-align: center;
         font-weight: bold;
         padding: 5px;
+        font-size: 14px;
         background-color: #ffcc00;
         color: #444;
       }
@@ -44,7 +47,7 @@
     </style>
   </head>
   <body>
-    <header>Popular beers at your favorite Stockholm venues</header>
+    <div class="header">Popular beers at your favorite Stockholm venues</div>
     <div id="akkurat" data-url="https://untappd.com/v/akkurat/4559" class="venue"><h1>Akkurat</h1></div>
     <div id="oliver-twist" data-url="https://untappd.com/v/oliver-twist/4400" class="venue"><h1>Oliver Twist</h1></div>
     <div id="omnipollos-hatt" data-url="https://untappd.com/v/omnipollos-hatt/2759436" class="venue"><h1>Omnipollos hatt</h1></div>
@@ -63,6 +66,9 @@
       $.get("http://cors-anywhere.herokuapp.com/" + url, function(data) {
         $("#" + key).append($(data).find('.beer-list'));
       });
+    });
+    $(".venue h1").click(function(event) {
+      window.open($(event.target).parent().attr("data-url"));
     });
   });
   </script>
