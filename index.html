@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://untappd.akamaized.net/assets/css/master.css?v=2.5.7" />
+    <link rel="stylesheet" href="https://untappd.akamaized.net/assets/v3/css/style.css?v=2.5.7" />
+    <base href="http://untappd.com/" target="_blank">
+    <style>
+      .venue {
+        float: left;
+        width: 375px;
+        height: 600px;
+        overflow-y: scroll;
+        zoom: 0.75;
+        -moz-transform: scale(0.75);
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        padding-top: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: #444;
+        background-color: transparent;
+      }
+      header {
+        text-align: center;
+        font-weight: bold;
+        padding: 5px;
+        background-color: #ffcc00;
+        color: #444;
+      }
+      .beer-list .beer-item {
+        margin-bottom: 5px;
+      }
+      .desc, .beer-list .beer-item .wishlist, .beer-list .beer-item .details {
+        display: none;
+      }
+      .beer-list .beer-item .beer-details .name {
+        font-size: 1em;
+        font-weight: bold;
+      }
+      .beer-list .beer-item .beer-details .style {
+        font-size: 0.8em;
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>Popular beers at your favorite Stockholm venues</header>
+    <div id="akkurat" data-url="https://untappd.com/v/akkurat/4559" class="venue"><h1>Akkurat</h1></div>
+    <div id="oliver-twist" data-url="https://untappd.com/v/oliver-twist/4400" class="venue"><h1>Oliver Twist</h1></div>
+    <div id="omnipollos-hatt" data-url="https://untappd.com/v/omnipollos-hatt/2759436" class="venue"><h1>Omnipollos hatt</h1></div>
+    <div id="brewdog-stockholm" data-url="https://untappd.com/v/brewdog-stockholm/627361" class="venue"><h1>Brewdog Kungsholmen</h1></div>
+    <div id="brewdog-sodermalm" data-url="https://untappd.com/v/brewdog-sodermalm/3476890" class="venue"><h1>Brewdog Södermalm</h1></div>
+    <div id="katarina-olkafe" data-url="https://untappd.com/v/katarina-olkafe/2147913" class="venue"><h1>Katarina Ölkafé</h1></div>
+    <div id="babajan" data-url="https://untappd.com/v/babajan/162502" class="venue"><h1>Babajan</h1></div>
+    <div id="bishops-arms-folkungagatan" data-url="https://untappd.com/v/bishops-arms/2578" class="venue"><h1>Bishops Arms Folkungagatan</h1></div>
+  </body>
+  <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+  <script>
+  $(document).ready(function() {
+    $(".venue").each(function(i) {
+      var key = $(this).attr("id");
+      var url = $(this).attr("data-url");
+      $.get("http://cors-anywhere.herokuapp.com/" + url, function(data) {
+        $("#" + key).append($(data).find('.beer-list'));
+      });
+    });
+  });
+  </script>
+</html>
